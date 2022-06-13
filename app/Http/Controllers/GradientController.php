@@ -57,7 +57,9 @@ class GradientController extends Controller
         if (strtolower($request->user()->role) === "admin") {
             $gradient = Gradient::create([
                 "user_id" => $request->user()->id,
+                "name" => $request->name,
                 "colors" => $request->colors,
+                "direction" => $request->direction,
             ]);
 
             if ($gradient) {
@@ -83,7 +85,9 @@ class GradientController extends Controller
 
         if ($gradient) {
             $gradient->user_id = $request->user()->id;
+            $gradient->name = $request->name;
             $gradient->colors = $request->colors;
+            $gradient->direction = $request->direction;
             $gradientSaved = $gradient->save();
 
             if ($gradientSaved) {

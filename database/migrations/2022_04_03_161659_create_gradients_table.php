@@ -21,6 +21,7 @@ return new class extends Migration {
                 ->onDelete('cascade');
             $table->string("name")->unique()->nullable(false);
             $table->string("colors")->unique()->nullable(false);
+            $table->enum("direction", ["to right", "to left", "to top left", "to top right", "to bottom left", "to bottom right", "to top", "to bottom"])->nullable(false)->default("to right");
             $table->boolean('is_favourite')->default(false);
             $table->softDeletes();
             $table->timestamps();

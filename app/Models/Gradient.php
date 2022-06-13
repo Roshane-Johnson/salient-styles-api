@@ -15,7 +15,7 @@ class Gradient extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ["colors", "user_id"];
+    protected $fillable = ["user_id", "name", "colors","direction" ];
 
 
     /**

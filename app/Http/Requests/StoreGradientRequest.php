@@ -24,7 +24,9 @@ class StoreGradientRequest extends FormRequest
     public function rules()
     {
         return [
+            "name" => "required|unique:gradients,name",
             "colors" => "required|unique:gradients,colors",
+            "direction" => "required",
         ];
     }
 

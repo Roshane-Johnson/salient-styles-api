@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\GradientController;
+use App\Http\Controllers\ResourceCountController;
+use App\Http\Controllers\ResourceTotalsController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -24,10 +26,13 @@ Route::post("login", [AuthenticationController::class, 'login']);
 Route::post("signup", [AuthenticationController::class, 'signup']);
 Route::post("logout", [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
 
-// Email Verification
 
 // Miscellaneous
 Route::get("token/verify", [AuthenticationController::class, 'verifyToken']);
+Route::get('gradients/total', [ResourceCountController::class, 'totalGradients']);
+Route::get('users/total', [ResourceCountController::class, 'totalUsers']);
+
+// Gradient
 Route::get("gradient/all", [GradientController::class, "index"]);
 Route::get("gradient/{gradient}", [GradientController::class, "show"]);
 
