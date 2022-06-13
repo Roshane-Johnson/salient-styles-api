@@ -24,7 +24,9 @@ class UpdateGradientRequest extends FormRequest
     public function rules()
     {
         return [
+            "name" => "sometimes",
             "colors" => "required",
+            "direction" => "required",
         ];
     }
 

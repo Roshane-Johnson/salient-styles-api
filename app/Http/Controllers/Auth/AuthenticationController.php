@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
@@ -49,12 +50,11 @@ class AuthenticationController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $user = User::where("email", $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!Auth::attempt($request->all(), true)) {
             return error([], "Invalid Credentials", 401);
         }
 
+        $user = User::where("email", $request->email)->first();
         $token = $user->createToken("User Bearer Token", [
                 'server:create',
                 'server:read',
@@ -85,9 +85,6 @@ class AuthenticationController extends Controller
 
     /**
      * Verify if a auth token is valid.
-     *
-     * This function reads the token from the header
-     * `Authorization: Bearer {{ token }}`
      *
      * @return \Illuminate\Http\Response
      */
