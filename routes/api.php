@@ -29,8 +29,8 @@ Route::post("logout", [AuthenticationController::class, 'logout'])->middleware('
 
 // Miscellaneous
 Route::get("token/verify", [AuthenticationController::class, 'verifyToken']);
-Route::get('gradients/total', [ResourceCountController::class, 'totalGradients']);
 Route::get('users/total', [ResourceCountController::class, 'totalUsers']);
+Route::get('gradients/total', [ResourceCountController::class, 'totalGradients']);
 
 // Gradient
 Route::get("gradient/all", [GradientController::class, "index"]);
